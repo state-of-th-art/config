@@ -1,0 +1,25 @@
+local telescope = require("telescope")
+telescope.setup({
+})
+telescope.load_extension("live_grep_args")
+telescope.load_extension("advanced_git_search")
+-- Keybindings
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
+vim.keymap.set("n", "<leader>fF", function()
+  builtin.find_files({ cwd = "~/projects/echo" })
+end
+, { desc = "[F]ind [F]iles" })
+vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "[F]ind [S]chema" })
+vim.keymap.set("n", "<leader>fd", builtin.lsp_definitions, { desc = "[F]ind [D]efinitions" })
+vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "[F]ind [R]eferences" })
+vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
+vim.keymap.set("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { desc = "[F]ind by [G]rep" })
+vim.keymap.set("n", "<leader>fD", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
+vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, {})
+vim.keymap.set("n", "<leader>fi", "<cmd>AdvancedGitSearch<CR>", { desc = "AdvancedGitSearch" })
+vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Search [G]it [C]ommits" })
+vim.keymap.set("n", "<leader>gb", builtin.git_bcommits, { desc = "Search [G]it Commits for [B]uffer" })
